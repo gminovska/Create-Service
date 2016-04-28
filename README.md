@@ -5,8 +5,8 @@ In this assignment we will create a new service that returns various data from t
 <ul>
 <li>list of all venues (just the names of the venues)</li>
 <li>list of all artists (just the names)</li>
-list of all shows (just the names)
-list of all shows for a particular venue (for this list the show name, show date,  show start time)
-list of all shows for a particular artist (Show name, show date, show time and venue Name)
+<li>list of all shows (just the names)</li>
+<li>list of all shows for a particular venue (for this list the show name, show date,  show start time)</li>
+<li>list of all shows for a particular artist (Show name, show date, show time and venue Name)</li>
 </ul>
 Additionally Create tests for each of the methods and test whether they succeed or fail.
