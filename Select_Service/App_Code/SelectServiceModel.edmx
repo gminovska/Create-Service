@@ -53,6 +53,18 @@
           <Property Name="VenueAgeRestriction" Type="int" />
           <Property Name="VenueDateAdded" Type="datetime" />
         </EntityType>
+        <EntityType Name="VenueLogin">
+          <Key>
+            <PropertyRef Name="VenueLoginKey" />
+          </Key>
+          <Property Name="VenueLoginKey" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VenueKey" Type="int" />
+          <Property Name="VenueLoginUserName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="VenueLoginPasswordPlain" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="VenueLoginRandom" Type="int" Nullable="false" />
+          <Property Name="VenueLoginHashed" Type="varbinary" MaxLength="500" />
+          <Property Name="VenueLoginDateAdded" Type="datetime" />
+        </EntityType>
         <Association Name="FK__Show__VenueKey__2F10007B">
           <End Role="Venue" Type="Self.Venue" Multiplicity="0..1" />
           <End Role="Show" Type="Self.Show" Multiplicity="*" />
@@ -89,11 +101,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__VenueLogi__Venue__31EC6D26">
+          <End Role="Venue" Type="Self.Venue" Multiplicity="0..1" />
+          <End Role="VenueLogin" Type="Self.VenueLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Venue">
+              <PropertyRef Name="VenueKey" />
+            </Principal>
+            <Dependent Role="VenueLogin">
+              <PropertyRef Name="VenueKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ShowTrackerModelStoreContainer">
           <EntitySet Name="Artist" EntityType="Self.Artist" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Show" EntityType="Self.Show" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ShowDetail" EntityType="Self.ShowDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Venue" EntityType="Self.Venue" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VenueLogin" EntityType="Self.VenueLogin" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Show__VenueKey__2F10007B" Association="Self.FK__Show__VenueKey__2F10007B">
             <End Role="Venue" EntitySet="Venue" />
             <End Role="Show" EntitySet="Show" />
@@ -105,6 +130,10 @@
           <AssociationSet Name="FK__ShowDetai__ShowK__30F848ED" Association="Self.FK__ShowDetai__ShowK__30F848ED">
             <End Role="Show" EntitySet="Show" />
             <End Role="ShowDetail" EntitySet="ShowDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VenueLogi__Venue__31EC6D26" Association="Self.FK__VenueLogi__Venue__31EC6D26">
+            <End Role="Venue" EntitySet="Venue" />
+            <End Role="VenueLogin" EntitySet="VenueLogin" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -165,6 +194,20 @@
           <Property Name="VenueAgeRestriction" Type="Int32" />
           <Property Name="VenueDateAdded" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Shows" Relationship="Self.FK__Show__VenueKey__2F10007B" FromRole="Venue" ToRole="Show" />
+          <NavigationProperty Name="VenueLogins" Relationship="Self.FK__VenueLogi__Venue__31EC6D26" FromRole="Venue" ToRole="VenueLogin" />
+        </EntityType>
+        <EntityType Name="VenueLogin">
+          <Key>
+            <PropertyRef Name="VenueLoginKey" />
+          </Key>
+          <Property Name="VenueLoginKey" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VenueKey" Type="Int32" />
+          <Property Name="VenueLoginUserName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="VenueLoginPasswordPlain" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="VenueLoginRandom" Type="Int32" Nullable="false" />
+          <Property Name="VenueLoginHashed" Type="Binary" MaxLength="500" FixedLength="false" />
+          <Property Name="VenueLoginDateAdded" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Venue" Relationship="Self.FK__VenueLogi__Venue__31EC6D26" FromRole="VenueLogin" ToRole="Venue" />
         </EntityType>
         <Association Name="FK__ShowDetai__Artis__300424B4">
           <End Role="Artist" Type="Self.Artist" Multiplicity="0..1" />
@@ -202,11 +245,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__VenueLogi__Venue__31EC6D26">
+          <End Role="Venue" Type="Self.Venue" Multiplicity="0..1" />
+          <End Role="VenueLogin" Type="Self.VenueLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Venue">
+              <PropertyRef Name="VenueKey" />
+            </Principal>
+            <Dependent Role="VenueLogin">
+              <PropertyRef Name="VenueKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ShowTrackerEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Artists" EntityType="Self.Artist" />
           <EntitySet Name="Shows" EntityType="Self.Show" />
           <EntitySet Name="ShowDetails" EntityType="Self.ShowDetail" />
           <EntitySet Name="Venues" EntityType="Self.Venue" />
+          <EntitySet Name="VenueLogins" EntityType="Self.VenueLogin" />
           <AssociationSet Name="FK__ShowDetai__Artis__300424B4" Association="Self.FK__ShowDetai__Artis__300424B4">
             <End Role="Artist" EntitySet="Artists" />
             <End Role="ShowDetail" EntitySet="ShowDetails" />
@@ -218,6 +274,10 @@
           <AssociationSet Name="FK__ShowDetai__ShowK__30F848ED" Association="Self.FK__ShowDetai__ShowK__30F848ED">
             <End Role="Show" EntitySet="Shows" />
             <End Role="ShowDetail" EntitySet="ShowDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VenueLogi__Venue__31EC6D26" Association="Self.FK__VenueLogi__Venue__31EC6D26">
+            <End Role="Venue" EntitySet="Venues" />
+            <End Role="VenueLogin" EntitySet="VenueLogins" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -275,6 +335,19 @@
                 <ScalarProperty Name="VenueWebPage" ColumnName="VenueWebPage" />
                 <ScalarProperty Name="VenueAgeRestriction" ColumnName="VenueAgeRestriction" />
                 <ScalarProperty Name="VenueDateAdded" ColumnName="VenueDateAdded" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VenueLogins">
+            <EntityTypeMapping TypeName="ShowTrackerModel.VenueLogin">
+              <MappingFragment StoreEntitySet="VenueLogin">
+                <ScalarProperty Name="VenueLoginKey" ColumnName="VenueLoginKey" />
+                <ScalarProperty Name="VenueKey" ColumnName="VenueKey" />
+                <ScalarProperty Name="VenueLoginUserName" ColumnName="VenueLoginUserName" />
+                <ScalarProperty Name="VenueLoginPasswordPlain" ColumnName="VenueLoginPasswordPlain" />
+                <ScalarProperty Name="VenueLoginRandom" ColumnName="VenueLoginRandom" />
+                <ScalarProperty Name="VenueLoginHashed" ColumnName="VenueLoginHashed" />
+                <ScalarProperty Name="VenueLoginDateAdded" ColumnName="VenueLoginDateAdded" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

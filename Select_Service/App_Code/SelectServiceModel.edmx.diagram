@@ -4,11 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="072d7b39090f4958b3477c37029f0c58" Name="Diagram1">
-        <EntityTypeShape EntityType="ShowTrackerModel.Artist" Width="1.5" PointX="7.375" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShowTrackerModel.Show" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShowTrackerModel.ShowDetail" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShowTrackerModel.Venue" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+      <Diagram DiagramId="cb034b5ce4634799b4a72d193299ca88" Name="Diagram1">
+        <EntityTypeShape EntityType="ShowTrackerModel.Artist" Width="1.875" PointX="9" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShowTrackerModel.Show" Width="2" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShowTrackerModel.ShowDetail" Width="2.625" PointX="5.625" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShowTrackerModel.Venue" Width="1.875" PointX="0.625" PointY="1.125" IsExpanded="true" />
         <AssociationConnector Association="ShowTrackerModel.FK__ShowDetai__Artis__300424B4" ManuallyRouted="false" />
         <AssociationConnector Association="ShowTrackerModel.FK__Show__VenueKey__2F10007B" ManuallyRouted="false" />
         <AssociationConnector Association="ShowTrackerModel.FK__ShowDetai__ShowK__30F848ED" ManuallyRouted="false" />

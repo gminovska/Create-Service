@@ -67,6 +67,7 @@ public partial class Venue
     public Venue()
     {
         this.Shows = new HashSet<Show>();
+        this.VenueLogins = new HashSet<VenueLogin>();
     }
 
     public int VenueKey { get; set; }
@@ -83,4 +84,19 @@ public partial class Venue
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<Show> Shows { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<VenueLogin> VenueLogins { get; set; }
+}
+
+public partial class VenueLogin
+{
+    public int VenueLoginKey { get; set; }
+    public Nullable<int> VenueKey { get; set; }
+    public string VenueLoginUserName { get; set; }
+    public string VenueLoginPasswordPlain { get; set; }
+    public int VenueLoginRandom { get; set; }
+    public byte[] VenueLoginHashed { get; set; }
+    public Nullable<System.DateTime> VenueLoginDateAdded { get; set; }
+
+    public virtual Venue Venue { get; set; }
 }

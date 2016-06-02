@@ -27,4 +27,5 @@ public partial class ShowTrackerEntities : DbContext
     public virtual DbSet<Show> Shows { get; set; }
     public virtual DbSet<ShowDetail> ShowDetails { get; set; }
     public virtual DbSet<Venue> Venues { get; set; }
+    public virtual DbSet<VenueLogin> VenueLogins { get; set; }
 }
